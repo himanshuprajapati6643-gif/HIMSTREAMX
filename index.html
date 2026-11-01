@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0c1b3e">
+    <meta name="author" content="Himanshu Prajapati">
+    <meta name="description" content="HIMSTREAMX - Next-Generation Cinematic OTT & High-Fidelity Music Streaming Platform. Watch 4K Blockbusters & Stream Regional Music. Developed by Himanshu Prajapati.">
+    <meta name="keywords" content="movies, music, songs, streaming, ott, bhojpuri, hindi, punjabi, haryanvi, 4k ultra hd, himstreamx">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <title>HIMSTREAMX | Stream Movies, Series & Regional Music in Ultra HD</title>
+
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="strict-origin-when-cross-origin" />
+
+    <!-- Main Stylesheets -->
+    <link rel="stylesheet" href="style.css?v=himstreamx-ott-music-1">
+    <link rel="stylesheet" href="style-music.css?v=himstreamx-ott-music-1">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar" id="navbar">
+        <div class="nav-left">
+            <a href="#home" class="logo" id="logoBtn">
+                <span class="logo-icon"><i class="fa-solid fa-play"></i></span>
+                <span class="logo-text">HIM<span>STREAMX</span></span>
+                <span class="logo-badge">PRO</span>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link active" data-filter="all"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="#movies" class="nav-link" data-filter="movies"><i class="fa-solid fa-film"></i> Movies</a>
+                <a href="#series" class="nav-link" data-filter="series"><i class="fa-solid fa-tv"></i> TV Shows</a>
+                <a href="#music" class="nav-link music-nav-link" data-filter="music"><i class="fa-solid fa-music"></i> Music</a>
+
+                <!-- Regional Languages Dropdown -->
+                <div class="nav-regional-dropdown">
+                    <button class="nav-regional-btn" title="Regional Entertainment Hubs">
+                        <i class="fa-solid fa-globe"></i> Regions <i class="fa-solid fa-chevron-down" style="font-size: 0.65rem;"></i>
+                    </button>
+                    <div class="regional-menu">
+                        <a href="#bhojpuri"><i class="fa-solid fa-bolt text-red"></i> Bhojpuri Hits</a>
+                        <a href="#hindi"><i class="fa-solid fa-film"></i> Bollywood & Hindi</a>
+                        <a href="#punjabi"><i class="fa-solid fa-guitar"></i> Punjabi Beats</a>
+                        <a href="#haryanvi"><i class="fa-solid fa-drum"></i> Haryanvi Ragni/DJ</a>
+                        <a href="#english"><i class="fa-solid fa-headphones"></i> English & Global</a>
+                    </div>
+                </div>
+
+                <a href="#discovery" class="nav-link" data-filter="discovery"><i class="fa-solid fa-compass"></i> Discover</a>
+                <a href="#top10" class="nav-link" data-filter="top10"><i class="fa-solid fa-trophy"></i> Top 10</a>
+                <a href="#mylist" class="nav-link" id="navMyListBtn">
+                    <i class="fa-solid fa-bookmark"></i> My List
+                    <span class="watchlist-count" id="watchlistCountBadge">0</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link vip-nav-link" onclick="openSubscriptionModal()" title="VIP 4K Cinema Pass" style="color: #ffb703;"><i class="fa-solid fa-crown"></i> VIP Pass</a>
+                <a href="javascript:void(0)" class="nav-link admin-nav-link" id="adminNavLink" onclick="openAdminDashboard()" title="Platform Admin Dashboard">
+                    <i class="fa-solid fa-shield-halved"></i> Admin
+                </a>
+            </nav>
+        </div>
+
+        <div class="nav-right">
+            <!-- Backend API Connectivity Pill -->
+            <div class="backend-status-pill online" id="backendStatusPill" title="HIMSTREAMX Engine Status">
+                <span class="status-dot"></span>
+                <span class="status-text">Backend Online</span>
+            </div>
+
+            <!-- Compact YouTube-Style Header Search Control: Normal state [ 🔍 ], Active state [ 🔍 Search ] -->
+            <div class="search-wrapper yt-header-search-bar" id="searchWrapper">
+                <button type="button" class="yt-search-trigger-btn" id="headerSearchIconBtn" title="Search YouTube" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                </button>
+                <div class="yt-search-input-container" id="ytSearchInputContainer">
+                    <i class="fa-solid fa-magnifying-glass yt-input-lead-icon"></i>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="yt-search-input"
+                        placeholder="Search"
+                        autocomplete="off"
+                        aria-label="Search"
+                    >
+                    <button type="button" class="clear-search-btn" id="clearSearchBtn" title="Clear search">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <button type="button" class="yt-search-submit-btn" id="headerSearchSubmitBtn" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <!-- Instant Search Suggestions Dropdown -->
+                <div class="search-suggestions" id="searchSuggestions">
+                    <div class="suggestions-header">
+                        <span>Quick Suggestions</span>
+                        <span id="suggestionCount">0 suggestions</span>
+                    </div>
+                    <div class="suggestions-list" id="suggestionsList">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Bell -->
+            <div class="nav-action-item">
+                <button class="icon-btn" id="notificationsBtn" title="Notifications" aria-label="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-indicator"></span>
+                </button>
+
+                <div class="dropdown-panel notifications-panel" id="notificationsPanel">
+                    <div class="panel-header">
+                        <h4>Notifications</h4>
+                        <span class="badge-new">3 New</span>
+                    </div>
+                    <ul class="notification-list">
+                        <li class="notification-item unread">
+                            <i class="fa-solid fa-music"></i>
+                            <div>
+                                <p><strong>Kesariya (Lo-Fi)</strong> & 15+ new songs added to Music Stream!</p>
+                                <span>Just now</span>
+                            </div>
+                        </li>
+                        <li class="notification-item unread">
+                            <i class="fa-solid fa-circle-play"></i>
+                            <div>
+                                <p><strong>Stranger Things 5</strong> teaser trailer is live in 4K HDR!</p>
+                                <span>2 hours ago</span>
+                            </div>
+                        </li>
+                        <li class="notification-item">
+                            <i class="fa-solid fa-crown"></i>
+                            <div>
+                                <p>VIP Status active: 4K Ultra HD & Dolby Atmos Unlocked.</p>
+                                <span>1 day ago</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Profile Dropdown -->
+            <div class="nav-action-item">
+                <div class="profile-btn" id="profileBtn" title="User Profile" tabindex="0">
+                    <div class="avatar">
+                        <span class="avatar-initials" role="img" aria-label="Himanshu Prajapati">HP</span>
+                    </div>
+                    <span class="profile-name">Himanshu Prajapati</span>
+                    <i class="fa-solid fa-chevron-down caret-icon"></i>
+                </div>
+
+                <div class="dropdown-panel profile-panel" id="profilePanel">
+                    <div class="profile-header">
+                        <div class="avatar large">
+                            <span class="avatar-initials" role="img" aria-label="Himanshu Prajapati">HP</span>
+                        </div>
+                        <div>
+                            <h5>Himanshu Prajapati</h5>
+                            <span class="badge-vip"><i class="fa-solid fa-crown"></i> Platform Creator & VIP</span>
+                        </div>
+                    </div>
+                    <div class="panel-divider"></div>
+                    <ul class="profile-menu">
+                        <li><a href="javascript:void(0)" onclick="openSubscriptionModal()"><i class="fa-solid fa-gem text-gold"></i> VIP Cinema Pass & UPI Payment</a></li>
+                        <li><a href="javascript:void(0)" onclick="promptDirectorUnlock()"><i class="fa-solid fa-user-secret text-cyan"></i> Director Profile (Master Vault)</a></li>
+                        <li><a href="javascript:void(0)" id="userDashboardBtn"><i class="fa-solid fa-circle-user text-cyan"></i> My Profile & Library Dashboard</a></li>
+                        <li><a href="#mylist" id="profileMyListLink"><i class="fa-solid fa-bookmark"></i> My Watchlist (<span id="profileListCount">0</span>)</a></li>
+                        <li><a href="#music" onclick="filterMusicByCategory('Trending')"><i class="fa-solid fa-heart text-red"></i> Liked Songs & Tracks</a></li>
+                        <li><a href="javascript:void(0)" id="switchProfileBtn"><i class="fa-solid fa-users"></i> Switch Profile (Family / Kids)</a></li>
+                        <li><a href="javascript:void(0)" onclick="openAdminDashboard()"><i class="fa-solid fa-gear"></i> Admin Management Hub</a></li>
+                        <li><a href="javascript:void(0)" id="playbackSettingsBtn"><i class="fa-solid fa-sliders"></i> Stream Quality (4K UHD + 320kbps Audio)</a></li>
+                        <li><a href="javascript:void(0)" id="clearHistoryBtn"><i class="fa-solid fa-clock-rotate-left"></i> Clear Stream History</a></li>
+                    </ul>
+                    <div class="panel-divider"></div>
+                    <a href="javascript:void(0)" class="signout-link" id="signOutBtn"><i class="fa-solid fa-right-from-bracket"></i> Sign Out of HIMSTREAMX</a>
+                </div>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Mobile Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ================= MOBILE DRAWER MENU ================= -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <div class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-play"></i></span>
+                <span class="logo-text">HIM<span>STREAMX</span></span>
+            </div>
+            <button class="drawer-close" id="drawerCloseBtn" aria-label="Close Menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="drawer-profile">
+            <div class="avatar">
+                <span class="avatar-initials" role="img" aria-label="Himanshu Prajapati">HP</span>
+            </div>
+            <div>
+                <h4>Himanshu Prajapati</h4>
+                <span>VIP Creator • 4K + Music Pass</span>
+            </div>
+        </div>
+        <nav class="drawer-links">
+            <a href="#home" class="drawer-link active"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="#movies" class="drawer-link"><i class="fa-solid fa-film"></i> Movies</a>
+            <a href="#series" class="drawer-link"><i class="fa-solid fa-tv"></i> TV Shows</a>
+            <a href="#music" class="drawer-link"><i class="fa-solid fa-music"></i> Music Streaming</a>
+            <a href="#bhojpuri" class="drawer-link"><i class="fa-solid fa-bolt text-red"></i> Bhojpuri Hits</a>
+            <a href="#hindi" class="drawer-link"><i class="fa-solid fa-language"></i> Hindi & Bollywood</a>
+            <a href="#punjabi" class="drawer-link"><i class="fa-solid fa-guitar"></i> Punjabi Hits</a>
+            <a href="#haryanvi" class="drawer-link"><i class="fa-solid fa-drum"></i> Haryanvi Songs</a>
+            <a href="#english" class="drawer-link"><i class="fa-solid fa-headphones"></i> English & Global</a>
+            <a href="#discovery" class="drawer-link"><i class="fa-solid fa-compass"></i> Discover Hub</a>
+            <a href="#top10" class="drawer-link"><i class="fa-solid fa-trophy"></i> Top 10 Hits</a>
+            <a href="#mylist" class="drawer-link"><i class="fa-solid fa-bookmark"></i> My Watchlist</a>
+            <a href="javascript:void(0)" class="drawer-link" onclick="openSubscriptionModal()"><i class="fa-solid fa-gem text-gold"></i> VIP Cinema Pass & QR Payment</a>
+            <a href="javascript:void(0)" class="drawer-link" onclick="promptDirectorUnlock()"><i class="fa-solid fa-user-secret text-cyan"></i> Director Profile (Vault)</a>
+            <a href="javascript:void(0)" class="drawer-link" onclick="openAdminDashboard()"><i class="fa-solid fa-shield-halved"></i> Admin Management</a>
+        </nav>
+        <div class="drawer-footer">
+            <p>© 2026 HIMSTREAMX • Developed by Himanshu Prajapati</p>
+            <a href="mailto:himanshuprajapati6643@gmail.com">Contact Developer</a>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- ================= QUICK GENRE / CATEGORY PILLS BAR ================= -->
+    <section class="genre-bar-section">
+        <div class="genre-container">
+            <button class="genre-pill active" data-genre="all"><i class="fa-solid fa-border-all"></i> All Titles</button>
+            <button class="genre-pill" data-genre="Action"><i class="fa-solid fa-burst"></i> Action</button>
+            <button class="genre-pill" data-genre="Sci-Fi"><i class="fa-solid fa-rocket"></i> Sci-Fi</button>
+            <button class="genre-pill" data-genre="Drama"><i class="fa-solid fa-masks-theater"></i> Drama</button>
+            <button class="genre-pill" data-genre="Thriller"><i class="fa-solid fa-skull"></i> Thriller</button>
+            <button class="genre-pill" data-genre="Crime"><i class="fa-solid fa-handcuffs"></i> Crime</button>
+            <button class="genre-pill" data-genre="Comedy"><i class="fa-solid fa-face-laugh-beam"></i> Comedy</button>
+            <button class="genre-pill" data-genre="Fantasy"><i class="fa-solid fa-wand-magic-sparkles"></i> Fantasy</button>
+            <button class="genre-pill" data-genre="Anime"><i class="fa-solid fa-dragon"></i> Anime</button>
+            <button class="genre-pill" data-genre="Hindi"><i class="fa-solid fa-language"></i> Bollywood & Hindi</button>
+        </div>
+    </section>
+
+    <!-- ================= DYNAMIC HERO SPOTLIGHT CAROUSEL ================= -->
+    <section class="hero-carousel" id="home">
+        <!-- Hero Slides Container (Controlled via JS) -->
+        <div class="hero-slides" id="heroSlides">
+            <!-- Slide 1: Stranger Things -->
+            <div class="hero-slide active" data-id="stranger-things">
+                <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1920&q=85');"></div>
+                <div class="hero-gradient-overlay"></div>
+                <div class="hero-content">
+                    <div class="hero-meta-badges">
+                        <span class="badge-top10"><i class="fa-solid fa-fire"></i> #1 IN SERIES TODAY</span>
+                        <span class="badge-quality">4K ULTRA HD</span>
+                        <span class="badge-audio"><i class="fa-solid fa-volume-high"></i> DOLBY ATMOS</span>
+                        <span class="badge-rating"><i class="fa-solid fa-star"></i> 8.7</span>
+                    </div>
+                    <h1 class="hero-title">Stranger Things</h1>
+                    <div class="hero-specs">
+                        <span class="match-score">98% Match</span>
+                        <span class="year">2022</span>
+                        <span class="age-cert">16+</span>
+                        <span class="duration">4 Seasons</span>
+                        <span class="genre-tag">Sci-Fi • Horror • Mystery</span>
+                    </div>
+                    <p class="hero-desc">
+                        When a young boy vanishes into thin air, a small Indiana town uncovers a supernatural mystery involving secret government experiments, terrifying forces, and a strange psychokinetic girl named Eleven.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="playHeroMedia('stranger-things')">
+                            <i class="fa-solid fa-play"></i> Watch Trailer
+                        </button>
+                        <button class="btn btn-secondary" onclick="toggleHeroWatchlist('stranger-things', this)">
+                            <i class="fa-solid fa-plus"></i> My List
+                        </button>
+                        <button class="btn btn-glass" onclick="openDetailsModal('stranger-things')">
+                            <i class="fa-solid fa-circle-info"></i> More Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Oppenheimer -->
+            <div class="hero-slide" data-id="oppenheimer">
+                <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=1920&q=85');"></div>
+                <div class="hero-gradient-overlay"></div>
+                <div class="hero-content">
+                    <div class="hero-meta-badges">
+                        <span class="badge-top10"><i class="fa-solid fa-trophy"></i> 7 OSCAR WINNER</span>
+                        <span class="badge-quality">IMAX ENHANCED</span>
+                        <span class="badge-audio"><i class="fa-solid fa-volume-high"></i> 5.1 SURROUND</span>
+                        <span class="badge-rating"><i class="fa-solid fa-star"></i> 8.9</span>
+                    </div>
+                    <h1 class="hero-title">Oppenheimer</h1>
+                    <div class="hero-specs">
+                        <span class="match-score">99% Match</span>
+                        <span class="year">2023</span>
+                        <span class="age-cert">18+</span>
+                        <span class="duration">3h 00m</span>
+                        <span class="genre-tag">Biography • Drama • History</span>
+                    </div>
+                    <p class="hero-desc">
+                        Christopher Nolan's epic biographical thriller chronicles the life of J. Robert Oppenheimer, the theoretical physicist who spearheaded the Manhattan Project and the fateful creation of the atomic bomb.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="playHeroMedia('oppenheimer')">
+                            <i class="fa-solid fa-play"></i> Watch Trailer
+                        </button>
+                        <button class="btn btn-secondary" onclick="toggleHeroWatchlist('oppenheimer', this)">
+                            <i class="fa-solid fa-plus"></i> My List
+                        </button>
+                        <button class="btn btn-glass" onclick="openDetailsModal('oppenheimer')">
+                            <i class="fa-solid fa-circle-info"></i> More Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Interstellar -->
+            <div class="hero-slide" data-id="interstellar">
+                <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1920&q=85');"></div>
+                <div class="hero-gradient-overlay"></div>
+                <div class="hero-content">
+                    <div class="hero-meta-badges">
+                        <span class="badge-top10"><i class="fa-solid fa-star"></i> ALL-TIME MASTERPIECE</span>
+                        <span class="badge-quality">4K DOLBY VISION</span>
+                        <span class="badge-audio"><i class="fa-solid fa-volume-high"></i> DOLBY ATMOS</span>
+                        <span class="badge-rating"><i class="fa-solid fa-star"></i> 8.7</span>
+                    </div>
+                    <h1 class="hero-title">Interstellar</h1>
+                    <div class="hero-specs">
+                        <span class="match-score">97% Match</span>
+                        <span class="year">2014</span>
+                        <span class="age-cert">13+</span>
+                        <span class="duration">2h 49m</span>
+                        <span class="genre-tag">Sci-Fi • Adventure • Drama</span>
+                    </div>
+                    <p class="hero-desc">
+                        With humanity on the brink of extinction on a dying Earth, a team of astronauts travels through a mysterious wormhole near Saturn in search of a new home among the stars.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="playHeroMedia('interstellar')">
+                            <i class="fa-solid fa-play"></i> Watch Trailer
+                        </button>
+                        <button class="btn btn-secondary" onclick="toggleHeroWatchlist('interstellar', this)">
+                            <i class="fa-solid fa-plus"></i> My List
+                        </button>
+                        <button class="btn btn-glass" onclick="openDetailsModal('interstellar')">
+                            <i class="fa-solid fa-circle-info"></i> More Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Carousel Navigation Arrows -->
+        <button class="hero-nav-arrow hero-prev" id="heroPrevBtn" aria-label="Previous Slide">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="hero-nav-arrow hero-next" id="heroNextBtn" aria-label="Next Slide">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Hero Dots Indicators -->
+        <div class="hero-dots" id="heroDots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+
+        <!-- Floating Controls on Hero -->
+        <div class="hero-floating-controls">
+            <button class="sound-toggle-btn" id="heroSoundToggle" title="Audio Preview Toggle">
+                <i class="fa-solid fa-volume-xmark" id="heroSoundIcon"></i>
+            </button>
+            <div class="rating-badge-pill">
+                <span>U/A 16+</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= MAIN CONTENT ROWS ================= -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ================= HIMSTREAMX MUSIC LIBRARY (CATEGORY HUBS) ================= -->
+        <section class="movie-section home-music-library-section" id="homeMusicLibrarySection">
+            <div class="section-header music-library-header">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-music text-red"></i> HIMSTREAMX Music Library
+                    </h2>
+                    <span class="results-count" id="musicLibraryCategoryLabel">🎵 Trending Songs • Official YouTube Audio/Video</span>
+                </div>
+                <div class="music-lib-badge-wrap">
+                    <span class="badge-tag gold"><i class="fa-brands fa-youtube"></i> Official YouTube Streams</span>
+                </div>
+            </div>
+
+            <!-- Category Buttons Bar (Stylish, Compact, Professional) -->
+            <div class="music-library-pills-bar" id="musicCategoryPillsBar">
+                <button class="music-lib-pill active" data-category="Trending">
+                    🎵 Trending
+                </button>
+                <button class="music-lib-pill" data-category="Hindi">
+                    🎵 Hindi
+                </button>
+                <button class="music-lib-pill" data-category="Punjabi">
+                    🎵 Punjabi
+                </button>
+                <button class="music-lib-pill" data-category="Haryanvi">
+                    🎵 Haryanvi
+                </button>
+                <button class="music-lib-pill" data-category="Bhojpuri">
+                    🎵 Bhojpuri
+                </button>
+                <button class="music-lib-pill" data-category="Bollywood">
+                    🎵 Bollywood
+                </button>
+                <button class="music-lib-pill" data-category="New Songs">
+                    🎵 New Songs
+                </button>
+                <button class="music-lib-pill" data-category="DJ / Remix">
+                    🎵 DJ / Remix
+                </button>
+                <button class="music-lib-pill" data-category="Old Songs">
+                    🎵 Old Songs
+                </button>
+                <button class="music-lib-pill" data-category="Popular Artists">
+                    🎵 Popular Artists
+                </button>
+            </div>
+
+            <!-- Music Cards Grid (Rendered dynamically with real YouTube results) -->
+            <div class="music-library-grid yt-results-grid" id="musicLibraryGrid">
+                <!-- Rendered dynamically by category loader -->
+            </div>
+        </section>
+
+        <!-- ================= DEDICATED YOUTUBE SEARCH RESULTS CONTAINER ================= -->
+        <section class="movie-section youtube-search-results-section" id="youtubeSearchResultsSection" style="display: none;">
+            <div class="section-header yt-results-header">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">
+                        <i class="fa-brands fa-youtube text-red"></i>
+                        <span id="youtubeSearchHeading">Search Results</span>
+                    </h2>
+                    <span class="results-count" id="youtubeSearchSubheading">Showing 20 real YouTube results</span>
+                </div>
+                <button class="btn btn-secondary btn-sm" id="clearYouTubeSearchBtn" onclick="clearYouTubeSearchAndShowHome()">
+                    <i class="fa-solid fa-xmark"></i> Clear Search
+                </button>
+            </div>
+
+            <!-- YouTube Results Grid -->
+            <div class="yt-results-grid" id="youtubeResultsGrid">
+                <!-- Populated dynamically with 20 real YouTube cards -->
+            </div>
+
+            <div style="text-align: center; margin-top: 24px;">
+                <button class="btn btn-secondary" id="youtubeLoadMoreBtn" style="display: none;" onclick="loadMoreYouTubeSearchResults()">
+                    <i class="fa-solid fa-arrow-down"></i> Load More Results
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= DYNAMIC YOUTUBE MUSIC SHELVES (6 CAROUSELS) ================= -->
+        <div id="homeDynamicYouTubeSections" class="home-dynamic-yt-container">
+            <!-- Populated dynamically with 6 curated shelves: Trending, Hindi, Punjabi, Haryanvi, Bhojpuri, Bollywood -->
+        </div>
+
+        <!-- SEARCH / FILTER RESULTS ROW (Dynamic Universal Container: Movies + Songs) -->
+        <section class="movie-section search-results-section" id="searchResultsSection" style="display: none;">
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <h2 class="section-title"><i class="fa-solid fa-magnifying-glass"></i> <span id="searchResultsTitle">Search Results</span></h2>
+                    <span class="results-count" id="searchResultsCount">0 titles found</span>
+                </div>
+                <button class="btn-text-action" id="resetSearchFilterBtn">
+                    <i class="fa-solid fa-arrow-rotate-left"></i> Clear & Show All
+                </button>
+            </div>
+
+            <!-- Search Tabs & Sort Controls -->
+            <div class="search-tabs-header">
+                <button class="search-tab-pill active" data-tab="all" onclick="setSearchTypeFilter('all')">All Results</button>
+                <button class="search-tab-pill" data-tab="movies" onclick="setSearchTypeFilter('movies')">Movies & Series</button>
+                <button class="search-tab-pill" data-tab="music" onclick="setSearchTypeFilter('music')">Songs & Tracks</button>
+
+                <select class="search-sort-dropdown" onchange="setSearchSort(this.value)">
+                    <option value="popularity">Sort: Most Popular</option>
+                    <option value="newest">Sort: Newest Releases</option>
+                    <option value="title">Sort: Alphabetical (A-Z)</option>
+                </select>
+            </div>
+
+            <!-- Matching Songs Container -->
+            <div id="searchSongsWrap">
+                <h3 class="search-sub-title"><i class="fa-solid fa-music text-red"></i> Matching Songs & Audio Tracks</h3>
+                <div class="songs-grid" id="searchSongsResultsGrid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Matching Movies Container -->
+            <div id="searchMoviesWrap">
+                <h3 class="search-sub-title"><i class="fa-solid fa-film text-red"></i> Matching Movies & TV Series</h3>
+                <div class="movie-grid" id="searchResultsGrid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Official YouTube Universal Media Stream Results -->
+            <div id="youtubeSearchSection" class="youtube-search-section">
+                <div class="yt-section-header">
+                    <div>
+                        <h3 class="search-sub-title" style="margin: 0;">
+                            <i class="fa-brands fa-youtube text-red"></i> Official YouTube Universal Media Stream
+                        </h3>
+                        <span id="youtubeResultCount" style="font-size: 0.8rem; color: var(--text-muted);">Official Authorized Embedded Videos & Audio</span>
+                    </div>
+                </div>
+
+                <!-- Language / Regional Filter Chips -->
+                <div class="yt-filter-chips">
+                    <button class="yt-filter-chip active" data-lang="all" onclick="filterYouTubeByLanguage('all')">All Content</button>
+                    <button class="yt-filter-chip" data-lang="Hindi" onclick="filterYouTubeByLanguage('Hindi')">Hindi Hits</button>
+                    <button class="yt-filter-chip" data-lang="Bhojpuri" onclick="filterYouTubeByLanguage('Bhojpuri')">Bhojpuri Songs</button>
+                    <button class="yt-filter-chip" data-lang="Punjabi" onclick="filterYouTubeByLanguage('Punjabi')">Punjabi Beats</button>
+                    <button class="yt-filter-chip" data-lang="Haryanvi" onclick="filterYouTubeByLanguage('Haryanvi')">Haryanvi Ragni/DJ</button>
+                    <button class="yt-filter-chip" data-lang="Rajasthani" onclick="filterYouTubeByLanguage('Rajasthani')">Rajasthani Folk</button>
+                    <button class="yt-filter-chip" data-lang="English" onclick="filterYouTubeByLanguage('English')">English & Global</button>
+                    <button class="yt-filter-chip" data-lang="Arijit Singh" onclick="handleUniversalYouTubeSearch('Arijit Singh')">Arijit Singh</button>
+                    <button class="yt-filter-chip" data-lang="Bhojpuri Movie" onclick="handleUniversalYouTubeSearch('Bhojpuri movie')">Bhojpuri Movies</button>
+                    <button class="yt-filter-chip" data-lang="Trailers" onclick="handleUniversalYouTubeSearch('Bollywood trailer 4k')">Cinema Hall Trailers</button>
+                </div>
+
+                <!-- YouTube Results Grid -->
+                <div class="yt-results-grid" id="legacyYoutubeResultsGrid">
+                    <!-- Legacy container -->
+                </div>
+
+                <div style="text-align: center; margin-top: 24px;">
+                    <button class="btn btn-secondary" id="legacyYoutubeLoadMoreBtn" style="display: none;" onclick="handleUniversalYouTubeSearch(currentSearchQuery, true)">
+                        <i class="fa-solid fa-arrow-down"></i> Load More YouTube Results
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTINUE LISTENING ROW (AUDIO STREAMING RESUME) -->
+        <section class="movie-section" id="continueListeningSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-headphones text-red"></i> Continue Listening for Himanshu Prajapati</h2>
+                <a href="#music" class="view-all-link">Music Station <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('continueListeningCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="continueListeningCarousel">
+                    <!-- Populated dynamically by music.js -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('continueListeningCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- CONTINUE WATCHING ROW (VIDEO PLAYBACK RESUME) -->
+        <section class="movie-section" id="continueWatchingSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left text-red"></i> Continue Watching Cinema</h2>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('continueCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container continue-container" id="continueCarousel">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('continueCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- TOP 10 IN INDIA TODAY (STYLED BIG NUMBERS LIKE NETFLIX) -->
+        <section class="movie-section top10-section" id="top10">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="top10-flame"><i class="fa-solid fa-fire"></i></span>
+                    Top 10 Hits Today in India
+                </h2>
+                <span class="section-sub">Updated Every Hour • HIMSTREAMX Global Charts</span>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('top10Carousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container top10-container" id="top10Carousel">
+                    <!-- Populated dynamically with massive rank numbers -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('top10Carousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- TRENDING SONGS (MUSIC ROW 1) -->
+        <section class="movie-section" id="trendingSongsSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-fire-flame-curved text-red"></i> Trending Songs & Chartbusters</h2>
+                <a href="#music" class="view-all-link" onclick="filterMusicByCategory('Trending')">Explore Music <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('trendingSongsCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="trendingSongsCarousel">
+                    <!-- Populated dynamically by music.js -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('trendingSongsCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- POPULAR MOVIES -->
+        <section class="movie-section" id="movies">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-film text-red"></i> Popular Blockbuster Movies</h2>
+                <a href="javascript:void(0)" class="view-all-link" onclick="filterByViewAll('movie')">Explore All <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('popularMoviesCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="popularMoviesCarousel">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('popularMoviesCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- LATEST MOVIES -->
+        <section class="movie-section" id="latestMoviesSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-sparkles text-red"></i> Latest Movies & New Premieres</h2>
+                <a href="javascript:void(0)" class="view-all-link" onclick="filterByViewAll('movie')">Explore All <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('latestMoviesCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="latestMoviesCarousel">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('latestMoviesCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- TRENDING MOVIES & SERIES -->
+        <section class="movie-section" id="trending">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-bolt text-red"></i> Trending Worldwide Cinema</h2>
+                <a href="javascript:void(0)" class="view-all-link" onclick="filterByViewAll('trending')">Explore All <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('trendingCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="trendingCarousel">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('trendingCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+                <!-- BECAUSE YOU WATCHED (SMART MOVIE RECOMMENDATIONS) -->
+        <section class="movie-section" id="becauseYouWatchedSection">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title" id="becauseYouWatchedTitle"><i class="fa-solid fa-wand-magic-sparkles text-cyan"></i> Because You Watched</h2>
+                    <span class="section-subtitle" id="becauseYouWatchedSubtitle" style="font-size: 0.82rem; color: var(--text-muted); display: block; margin-top: 3px;">Deep cinematic connections and thematic matches</span>
+                </div>
+                <div class="shelf-anchor-badge" id="becauseYouWatchedBadge">Stranger Things</div>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('becauseYouWatchedCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="becauseYouWatchedCarousel">
+                    <!-- Populated dynamically by Smart Recommendation Engine -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('becauseYouWatchedCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+<!-- TV SHOWS & WEB SERIES -->
+        <section class="movie-section" id="series">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-tv text-red"></i> Binge-Worthy TV Shows & Web Series</h2>
+                <a href="javascript:void(0)" class="view-all-link" onclick="filterByViewAll('series')">Explore All <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('tvShowsCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="tvShowsCarousel">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('tvShowsCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- RECENTLY ADDED SONGS -->
+        <section class="movie-section" id="recentlyAddedSongsSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-clock text-red"></i> Recently Added Songs & Singles</h2>
+                <a href="#music" class="view-all-link">Full Library <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('recentlyAddedSongsCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="recentlyAddedSongsCarousel">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('recentlyAddedSongsCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- POPULAR ARTISTS ROW -->
+        <section class="movie-section" id="popularArtistsSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-microphone-lines text-red"></i> Popular Artists & Singers</h2>
+                <span class="section-sub">Bhojpuri, Bollywood, Punjabi, Folk & Global Legends</span>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('popularArtistsCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="popularArtistsCarousel">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('popularArtistsCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- MUSIC GENRES GRID -->
+        <section class="movie-section" id="musicGenresSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-compact-disc text-red"></i> Explore Music Genres</h2>
+                <span class="section-sub">Moods, Rhythms & Styles</span>
+            </div>
+            <div class="genres-grid" id="musicGenresGrid">
+                <!-- Populated dynamically -->
+            </div>
+        </section>
+
+        <!-- RECOMMENDED SONGS -->
+        <section class="movie-section" id="recommendedSongsSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-star text-red"></i> Recommended Songs for You</h2>
+                <a href="#music" class="view-all-link">Browse More <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('recommendedSongsCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="recommendedSongsCarousel">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('recommendedSongsCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+                <!-- BECAUSE YOU LISTENED TO (SMART MUSIC RECOMMENDATIONS) -->
+        <section class="movie-section" id="becauseYouListenedSection">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title" id="becauseYouListenedTitle"><i class="fa-solid fa-wand-magic-sparkles text-cyan"></i> Because You Listened To</h2>
+                    <span class="section-subtitle" id="becauseYouListenedSubtitle" style="font-size: 0.82rem; color: var(--text-muted); display: block; margin-top: 3px;">Acoustic matches and personalized song recommendations</span>
+                </div>
+                <div class="shelf-anchor-badge" id="becauseYouListenedBadge">Kesariya (Midnight Lo-fi)</div>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('becauseYouListenedCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="becauseYouListenedCarousel">
+                    <!-- Populated dynamically by Smart Music Recommendation Engine -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('becauseYouListenedCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+<!-- ==========================================================================
+             PART 2 — COMPLETE DEDICATED MUSIC SECTION
+             ========================================================================== -->
+        <section class="movie-section" id="musicSection">
+            <!-- Spotlight Banner inside Music Section -->
+            <div class="music-spotlight-card">
+                <div class="music-spotlight-content">
+                    <span class="music-spotlight-badge"><i class="fa-solid fa-crown"></i> HIMSTREAMX MUSIC MASTER</span>
+                    <h2 class="music-spotlight-title">Kesariya (Midnight Lo-fi Edition)</h2>
+                    <p class="music-spotlight-desc">
+                        Immerse yourself in gentle lo-fi acoustic chords and soulful melodies. Stream royalty-free in Hi-Res 320kbps master audio with real-time audio visualizers.
+                    </p>
+                    <div class="music-spotlight-actions">
+                        <button class="btn btn-primary" onclick="handleSongCardClick('song-kesariya-lofi')">
+                            <i class="fa-solid fa-play"></i> Play Spotlight
+                        </button>
+                        <button class="btn btn-secondary" onclick="handleSongCardClick('song-lollipop-lagelu-remix')">
+                            <i class="fa-solid fa-bolt"></i> Bhojpuri EDM Hit
+                        </button>
+                        <button class="btn btn-glass" onclick="handleSongCardClick('song-excuses-urban')">
+                            <i class="fa-solid fa-headphones"></i> Punjabi Lo-fi
+                        </button>
+                    </div>
+                </div>
+                <div class="music-spotlight-art">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80" alt="Music Spotlight">
+                </div>
+            </div>
+
+            <!-- All 21 Music Categories Filter Pills -->
+            <div class="music-categories-bar">
+                <div class="music-categories-scroll">
+                    <button class="music-category-pill active" data-music-category="all"><i class="fa-solid fa-border-all"></i> All Music</button>
+                    <button class="music-category-pill" data-music-category="Hindi"><i class="fa-solid fa-film"></i> Hindi Songs</button>
+                    <button class="music-category-pill" data-music-category="Bhojpuri"><i class="fa-solid fa-bolt"></i> Bhojpuri Songs</button>
+                    <button class="music-category-pill" data-music-category="Punjabi"><i class="fa-solid fa-guitar"></i> Punjabi Songs</button>
+                    <button class="music-category-pill" data-music-category="Haryanvi"><i class="fa-solid fa-drum"></i> Haryanvi Songs</button>
+                    <button class="music-category-pill" data-music-category="Rajasthani"><i class="fa-solid fa-gem"></i> Rajasthani Songs</button>
+                    <button class="music-category-pill" data-music-category="Bengali"><i class="fa-solid fa-feather"></i> Bengali Songs</button>
+                    <button class="music-category-pill" data-music-category="Marathi"><i class="fa-solid fa-fire"></i> Marathi Songs</button>
+                    <button class="music-category-pill" data-music-category="Gujarati"><i class="fa-solid fa-music"></i> Gujarati Songs</button>
+                    <button class="music-category-pill" data-music-category="South Indian"><i class="fa-solid fa-burst"></i> South Indian Music</button>
+                    <button class="music-category-pill" data-music-category="English"><i class="fa-solid fa-headphones"></i> English Songs</button>
+                    <button class="music-category-pill" data-music-category="Instrumental"><i class="fa-solid fa-wave-square"></i> Instrumental</button>
+                    <button class="music-category-pill" data-music-category="Devotional"><i class="fa-solid fa-om"></i> Devotional</button>
+                    <button class="music-category-pill" data-music-category="Romantic"><i class="fa-solid fa-heart"></i> Romantic</button>
+                    <button class="music-category-pill" data-music-category="Sad"><i class="fa-solid fa-cloud-rain"></i> Sad</button>
+                    <button class="music-category-pill" data-music-category="Party"><i class="fa-solid fa-champagne-glasses"></i> Party</button>
+                    <button class="music-category-pill" data-music-category="DJ/Remix"><i class="fa-solid fa-compact-disc"></i> DJ/Remix</button>
+                    <button class="music-category-pill" data-music-category="Folk"><i class="fa-solid fa-landmark"></i> Folk</button>
+                    <button class="music-category-pill" data-music-category="Classical"><i class="fa-solid fa-bell"></i> Classical</button>
+                    <button class="music-category-pill" data-music-category="Lo-fi"><i class="fa-solid fa-mug-saucer"></i> Lo-fi</button>
+                    <button class="music-category-pill" data-music-category="Workout"><i class="fa-solid fa-dumbbell"></i> Workout</button>
+                    <button class="music-category-pill" data-music-category="Trending"><i class="fa-solid fa-arrow-trend-up"></i> Trending</button>
+                </div>
+            </div>
+
+            <!-- Music Section Header & Count -->
+            <div class="section-header" style="margin-top: 16px;">
+                <div class="section-title-wrap">
+                    <h2 class="section-title" id="musicSectionTitle">All Tracks & Curated Playlists</h2>
+                    <span class="results-count" id="musicSectionCount">30+ tracks available</span>
+                </div>
+            </div>
+
+            <!-- Dedicated Songs Grid -->
+            <div class="songs-grid" id="dedicatedMusicGrid">
+                <!-- Rendered dynamically by music.js -->
+            </div>
+        </section>
+
+        <!-- SCI-FI & MULTIVERSE -->
+        <section class="movie-section" id="scifi">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-shuttle-space text-red"></i> Mind-Bending Sci-Fi & Multiverse</h2>
+                <a href="javascript:void(0)" class="view-all-link" onclick="filterByGenrePill('Sci-Fi')">Explore All <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('sciFiCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="sciFiCarousel">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('sciFiCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- CRITICALLY ACCLAIMED & HIGHEST RATED -->
+        <section class="movie-section" id="topRatedSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-award text-red"></i> Highest Rated Masterpieces (IMDb 8.5+)</h2>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="slider-arrow left" onclick="scrollCarousel('topRatedCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="movie-container" id="topRatedCarousel">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="slider-arrow right" onclick="scrollCarousel('topRatedCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+                <!-- ==========================================================================
+             PART 4 — DISCOVERY EXPERIENCE HUB (DATA-DRIVEN REGIONAL MUSIC & CINEMA)
+             ========================================================================== -->
+        <section class="movie-section" id="discoverySection" style="display: none; padding-top: 20px;">
+            <div class="discovery-section-header">
+                <h2><i class="fa-solid fa-compass text-cyan"></i> Universal Entertainment Discovery</h2>
+                <p>Explore 19+ regional music languages and moods alongside 11+ blockbuster movie categories. Click any tile for instant curated playback and discovery.</p>
+            </div>
+
+            <div class="discovery-tabs-bar">
+                <button class="discovery-tab-btn active" data-disc="all" onclick="filterDiscoveryTab('all')">
+                    <i class="fa-solid fa-shapes"></i> All Categories (30)
+                </button>
+                <button class="discovery-tab-btn" data-disc="music-lang" onclick="filterDiscoveryTab('music-lang')">
+                    <i class="fa-solid fa-language"></i> Music Languages (10)
+                </button>
+                <button class="discovery-tab-btn" data-disc="music-genre" onclick="filterDiscoveryTab('music-genre')">
+                    <i class="fa-solid fa-compact-disc"></i> Music Genres & Moods (9)
+                </button>
+                <button class="discovery-tab-btn" data-disc="movie-genre" onclick="filterDiscoveryTab('movie-genre')">
+                    <i class="fa-solid fa-film"></i> Movies & Cinema Genres (11)
+                </button>
+            </div>
+
+            <div class="discovery-grid" id="discoveryGrid">
+                <!-- Populated dynamically by Data-Driven Discovery Engine -->
+            </div>
+        </section>
+
+<!-- MY WATCHLIST SECTION -->
+        <section class="movie-section watchlist-section" id="mylist">
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <h2 class="section-title"><i class="fa-solid fa-bookmark text-red"></i> My Watchlist</h2>
+                    <span class="results-count" id="watchlistCountLabel">0 titles saved</span>
+                </div>
+                <button class="btn-text-action" id="clearWatchlistBtn" onclick="clearFullWatchlist()">
+                    <i class="fa-solid fa-trash-can"></i> Clear All
+                </button>
+            </div>
+            <div class="movie-grid" id="watchlistGrid">
+                <!-- Populated dynamically or shows empty state -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= RICH MOVIE DETAILS & TRAILER MODAL ================= -->
+    <div class="modal" id="movieModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+
+        <div class="modal-dialog">
+            <button class="modal-close-btn" id="closeModal" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Video Player Preview Header -->
+            <div class="modal-media-header">
+                <div class="video-container" id="modalVideoContainer">
+                    <!-- Embedded YouTube Player inserted by JS -->
+                </div>
+                <div class="modal-media-overlay">
+                    <h2 class="modal-title" id="modalTitle">Movie Title</h2>
+                    <div class="modal-quick-actions">
+                        <button class="btn btn-primary btn-play-main" id="modalPlayBtn">
+                            <i class="fa-solid fa-play"></i> Watch Movie
+                        </button>
+                        <button class="btn btn-circle" id="modalWatchlistBtn" title="Add to My List">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <button class="btn btn-circle" id="modalLikeBtn" title="I like this">
+                            <i class="fa-regular fa-thumbs-up"></i>
+                        </button>
+                        <button class="btn btn-circle" id="modalShareBtn" title="Share link">
+                            <i class="fa-solid fa-share-nodes"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Body Details -->
+            <div class="modal-body">
+                <div class="modal-tabs">
+                    <button class="modal-tab active" data-tab="overview">Overview</button>
+                    <button class="modal-tab" data-tab="episodes" id="modalEpisodesTabBtn">Episodes & Seasons</button>
+                    <button class="modal-tab" data-tab="cast">Cast & Details</button>
+                    <button class="modal-tab" data-tab="similar">More Like This</button>
+                </div>
+
+                <!-- Tab 1: Overview -->
+                <div class="tab-pane active" id="tabOverview">
+                    <div class="modal-overview-grid">
+                        <div class="overview-left">
+                            <div class="modal-metadata-row">
+                                <span class="match-score" id="modalMatchScore">98% Match</span>
+                                <span class="meta-pill year" id="modalYear">2024</span>
+                                <span class="meta-pill age" id="modalAge">16+</span>
+                                <span class="meta-pill duration" id="modalDuration">2h 15m</span>
+                                <span class="meta-pill quality" id="modalQuality">4K Ultra HD</span>
+                                <span class="meta-pill rating" id="modalRating"><i class="fa-solid fa-star"></i> 8.5</span>
+                            </div>
+
+                            <p class="modal-description" id="modalDescription">
+                                Movie description and plot synopsis goes here.
+                            </p>
+
+                            <div class="modal-audio-subtitles">
+                                <div class="audio-badge">
+                                    <i class="fa-solid fa-language"></i> Audio: <span>Hindi, English [Original], Tamil, Telugu</span>
+                                </div>
+                                <div class="audio-badge">
+                                    <i class="fa-solid fa-closed-captioning"></i> Subtitles: <span>English, Hindi</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="overview-right">
+                            <div class="meta-group">
+                                <span class="meta-label">Genres:</span>
+                                <span class="meta-value" id="modalGenres">Sci-Fi, Action, Thriller</span>
+                            </div>
+                            <div class="meta-group">
+                                <span class="meta-label">Director:</span>
+                                <span class="meta-value" id="modalDirector">Christopher Nolan</span>
+                            </div>
+                            <div class="meta-group">
+                                <span class="meta-label">Starring:</span>
+                                <span class="meta-value" id="modalCast">Actor 1, Actor 2, Actor 3</span>
+                            </div>
+                            <div class="meta-group">
+                                <span class="meta-label">Maturity Rating:</span>
+                                <span class="meta-value">Recommended for ages 16 and up. Intense sequences.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Episodes (For Series) -->
+                <div class="tab-pane" id="tabEpisodes">
+                    <div class="episodes-header">
+                        <h3>Episodes</h3>
+                        <div class="season-select-wrapper">
+                            <select id="seasonSelector" class="season-dropdown">
+                                <option value="1">Season 1 (8 Episodes)</option>
+                                <option value="2">Season 2 (9 Episodes)</option>
+                                <option value="3">Season 3 (8 Episodes)</option>
+                                <option value="4">Season 4 (9 Episodes)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="episodes-list" id="episodesListContainer">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Tab 3: Cast & Details -->
+                <div class="tab-pane" id="tabCast">
+                    <h3 class="pane-title">Top Cast & Crew</h3>
+                    <div class="cast-grid" id="modalCastGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Tab 4: More Like This -->
+                <div class="tab-pane" id="tabSimilar">
+                    <h3 class="pane-title">Recommended Titles</h3>
+                    <div class="similar-grid" id="modalSimilarGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FULLSCREEN CINEMA PLAYER SIMULATION ================= -->
+    <div class="cinema-player-modal" id="cinemaPlayerModal">
+        <div class="cinema-player-topbar">
+            <button class="cinema-back-btn" id="cinemaBackBtn" title="Back to Browse">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="cinema-title-info">
+                <h4 id="cinemaPlayerTitle">Stranger Things</h4>
+                <span id="cinemaPlayerSubtitle">S1:E1 "Chapter One: The Vanishing of Will Byers"</span>
+            </div>
+            <div class="cinema-topbar-right">
+                <span class="stream-badge"><i class="fa-solid fa-wifi"></i> 4K UHD 60FPS</span>
+            </div>
+        </div>
+
+        <div class="cinema-video-viewport" id="cinemaViewport">
+            <div class="cinema-video-screen" id="cinemaVideoScreen">
+                <!-- Video trailer stream -->
+            </div>
+        </div>
+
+        <!-- Cinema Bottom Player Controls -->
+        <div class="cinema-controls-bar">
+            <div class="scrubber-container" id="cinemaScrubberContainer">
+                <div class="scrubber-bar">
+                    <div class="scrubber-progress" id="cinemaProgressBar" style="width: 28%;"></div>
+                    <div class="scrubber-handle" id="cinemaHandle" style="left: 28%;"></div>
+                </div>
+            </div>
+
+            <div class="controls-actions">
+                <div class="controls-left">
+                    <button class="player-btn" id="cinemaPlayPauseBtn" title="Play/Pause (Space)">
+                        <i class="fa-solid fa-play" id="cinemaPlayIcon"></i>
+                    </button>
+                    <button class="player-btn" id="cinemaRewindBtn" title="Rewind 10s">
+                        <i class="fa-solid fa-rotate-left"></i> <span class="skip-num">10</span>
+                    </button>
+                    <button class="player-btn" id="cinemaForwardBtn" title="Forward 10s">
+                        <i class="fa-solid fa-rotate-right"></i> <span class="skip-num">10</span>
+                    </button>
+                    <div class="volume-control">
+                        <button class="player-btn" id="cinemaVolumeBtn" title="Mute/Unmute (M)">
+                            <i class="fa-solid fa-volume-high" id="cinemaVolumeIcon"></i>
+                        </button>
+                        <input type="range" min="0" max="100" value="80" class="volume-slider" id="cinemaVolumeSlider">
+                    </div>
+                    <div class="time-display">
+                        <span id="cinemaCurrentTime">14:20</span> / <span id="cinemaDuration">51:30</span>
+                    </div>
+                </div>
+
+                <div class="controls-right">
+                    <button class="player-btn-text" id="cinemaAudioSubBtn" title="Audio & Subtitles">
+                        <i class="fa-solid fa-closed-captioning"></i> Audio & Subs
+                    </button>
+                    <button class="player-btn-text" id="cinemaSpeedBtn" title="Playback Speed">
+                        <span id="speedLabel">1.0x</span>
+                    </button>
+                    <button class="player-btn" id="cinemaFullscreenBtn" title="Toggle Fullscreen (F)">
+                        <i class="fa-solid fa-expand" id="cinemaFullscreenIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         PART 3 — GLOBAL FIXED MINI MUSIC PLAYER
+         ========================================================================== -->
+    <div class="global-music-player" id="globalMusicPlayer" role="region" aria-label="Music Player">
+        <!-- Left: Track Details -->
+        <div class="player-left" onclick="window.himstreamxPlayer && window.himstreamxPlayer.openExpandedPlayer()">
+            <div class="player-thumb-wrap">
+                <img class="player-thumb" id="playerThumb" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=120&q=80" alt="Current Track">
+            </div>
+            <div class="player-info">
+                <h5 class="player-title" id="playerTitle">Select a Song to Stream</h5>
+                <span class="player-artist" id="playerArtist">HIMSTREAMX Music Engine</span>
+            </div>
+            <button class="player-like-btn" id="playerLikeBtn" title="Like song" onclick="event.stopPropagation()">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        </div>
+
+        <!-- Center: Controls & Scrubber -->
+        <div class="player-center">
+            <div class="player-controls">
+                <button class="player-ctrl-btn" id="playerShuffleBtn" title="Shuffle (S)">
+                    <i class="fa-solid fa-shuffle"></i>
+                </button>
+                <button class="player-ctrl-btn" id="playerPrevBtn" title="Previous Song (P)">
+                    <i class="fa-solid fa-backward-step"></i>
+                </button>
+                <button class="player-play-circle" id="playerPlayPauseBtn" title="Play/Pause (Space)">
+                    <i class="fa-solid fa-play" id="playerPlayIcon"></i>
+                </button>
+                <button class="player-ctrl-btn" id="playerNextBtn" title="Next Song (N)">
+                    <i class="fa-solid fa-forward-step"></i>
+                </button>
+                <button class="player-ctrl-btn" id="playerRepeatBtn" title="Repeat (R)">
+                    <i class="fa-solid fa-repeat"></i>
+                </button>
+            </div>
+
+            <div class="player-timeline">
+                <span class="player-time" id="playerCurrentTime">0:00</span>
+                <div class="player-scrubber-track" id="playerScrubber" title="Seek track">
+                    <div class="player-scrubber-fill" id="playerProgressBar"></div>
+                </div>
+                <span class="player-time" id="playerTotalDuration">3:48</span>
+            </div>
+        </div>
+
+        <!-- Right: Volume, Queue & Expand -->
+        <div class="player-right">
+            <div class="player-volume-wrap">
+                <button class="player-ctrl-btn" id="playerVolumeBtn" title="Mute/Unmute (M)">
+                    <i class="fa-solid fa-volume-high" id="playerVolumeIcon"></i>
+                </button>
+                <input type="range" min="0" max="1" step="0.05" value="0.8" class="player-vol-slider" id="playerVolumeSlider" aria-label="Volume">
+            </div>
+            <button class="player-queue-btn" id="playerQueueToggleBtn" title="Playback Queue">
+                <i class="fa-solid fa-list-ul"></i>
+                <span class="player-queue-badge" id="playerQueueBadge">0</span>
+            </button>
+            <button class="player-expand-btn" id="playerExpandBtn" title="Open Fullscreen Player">
+                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= EXPANDED FULLSCREEN MUSIC PLAYER ================= -->
+    <div class="expanded-player-modal" id="expandedPlayerModal" role="dialog" aria-modal="true">
+        <div class="expanded-backdrop" id="expandedBackdrop"></div>
+        <div class="expanded-player-content">
+            <button class="expanded-close-btn" id="expandedCloseBtn" aria-label="Close Expanded Player">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="expanded-main-grid">
+                <!-- Left: Vinyl Rotating Disc -->
+                <div class="expanded-art-column">
+                    <div class="expanded-vinyl-art">
+                        <img class="expanded-cover-img" id="expandedCover" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80" alt="Album Art">
+                        <div class="vinyl-center-hole"></div>
+                    </div>
+
+                    <!-- Real-Time Audio Visualizer Simulator -->
+                    <div class="audio-visualizer-container">
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                        <div class="audio-visualizer-bar"></div>
+                    </div>
+                </div>
+
+                <!-- Right: Metadata & Lyrics -->
+                <div class="expanded-player-details">
+                    <h2 id="expandedTitle">Song Title</h2>
+                    <h3 id="expandedArtist">Artist Name</h3>
+                    <p id="expandedGenre">Language • Genre</p>
+                    <p id="expandedAlbum" class="expanded-album-tag" style="font-size: 0.85rem; color: #a4b3cf; margin-bottom: 12px;">Album Name</p>
+
+                    <!-- Lyrics / Highlights -->
+                    <div id="expandedLyrics">
+                        <div class="lyrics-card">
+                            <h4><i class="fa-solid fa-quote-left"></i> Song Lyrics & Highlights</h4>
+                            <p class="lyrics-text">Stream high-fidelity royalty-free tracks with HIMSTREAMX Studio Engine.</p>
+                            <span class="lyrics-tag">Certified Master Audio 320kbps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expanded Scrubber & Full Playback Controls -->
+            <div class="player-timeline" style="margin-top: 10px;">
+                <span class="player-time" id="expandedCurrentTime">0:00</span>
+                <div class="player-scrubber-track" id="expandedScrubber" title="Seek">
+                    <div class="player-scrubber-fill" id="expandedProgressBar"></div>
+                </div>
+                <span class="player-time" id="expandedDuration">3:48</span>
+            </div>
+
+            <div class="player-controls" style="justify-content: center; gap: 24px;">
+                <button class="player-ctrl-btn" id="expandedShuffleBtn" title="Shuffle">
+                    <i class="fa-solid fa-shuffle"></i>
+                </button>
+                <button class="player-ctrl-btn" id="expandedPrevBtn" title="Previous">
+                    <i class="fa-solid fa-backward-step fa-lg"></i>
+                </button>
+                <button class="player-play-circle" id="expandedPlayPauseBtn" style="width: 52px; height: 52px; font-size: 1.3rem;">
+                    <i class="fa-solid fa-play" id="expandedPlayIcon"></i>
+                </button>
+                <button class="player-ctrl-btn" id="expandedNextBtn" title="Next">
+                    <i class="fa-solid fa-forward-step fa-lg"></i>
+                </button>
+                <button class="player-ctrl-btn" id="expandedRepeatBtn" title="Repeat">
+                    <i class="fa-solid fa-repeat"></i>
+                </button>
+                <button class="player-ctrl-btn" id="expandedLikeBtn" title="Like Song">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <button class="player-ctrl-btn" id="expandedSpeedBtn" title="Playback Speed">
+                    <span id="expandedSpeedLabel" style="font-weight: 700; font-size: 0.85rem;">1.0x</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE-OUT QUEUE DRAWER ================= -->
+    <div class="queue-drawer" id="queueDrawer">
+        <div class="queue-header">
+            <h3><i class="fa-solid fa-list-ul text-red"></i> Play Queue</h3>
+            <div>
+                <button class="queue-clear-btn" id="queueClearBtn">Clear All</button>
+                <button class="queue-close-btn" id="queueCloseBtn" style="margin-left: 12px;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+        <div class="queue-list" id="queueListContainer">
+            <!-- Populated dynamically -->
+        </div>
+    </div>
+
+    <!-- ================= AUTH MODAL (LOGIN & SIGNUP) ================= -->
+    <div class="auth-modal" id="authModal">
+        <div class="modal-backdrop" onclick="closeAuthModal()"></div>
+        <div class="auth-dialog">
+            <button class="modal-close-btn" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="auth-header">
+                <h3 id="authModalTitle">Welcome to HIMSTREAMX</h3>
+                <p id="authModalSub">Watch Movies, Web Series & Stream Regional Music in 4K.</p>
+            </div>
+            <form class="auth-form" onsubmit="handleAuthSubmit(event)">
+                <div class="auth-input-group" id="authNameGroup" style="display: none;">
+                    <label>Full Name</label>
+                    <input type="text" class="auth-input" id="authNameInput" placeholder="Enter your full name">
+                </div>
+                <div class="auth-input-group">
+                    <label>Email Address</label>
+                    <input type="email" class="auth-input" id="authEmailInput" placeholder="name@example.com" required value="himanshuprajapati6643@gmail.com">
+                </div>
+                <div class="auth-input-group">
+                    <label>Password</label>
+                    <input type="password" class="auth-input" id="authPasswordInput" placeholder="••••••••" required value="himstreamx2026">
+                </div>
+                <button type="submit" class="auth-btn-submit" id="authSubmitBtn">Sign In to HIMSTREAMX</button>
+            </form>
+            <div class="auth-footer" id="authSwitchText">
+                Don't have an account? <a href="javascript:void(0)" onclick="openAuthModal('signup')">Sign Up Free</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PROFILE SWITCHER MODAL ================= -->
+    <div class="profile-switch-modal" id="profileSwitchModal">
+        <div class="modal-backdrop" onclick="closeProfileSwitchModal()"></div>
+        <div class="profile-switch-dialog">
+            <div class="panel-header" style="margin-bottom: 12px;">
+                <h3 style="color: #fff; font-size: 1.25rem;">Who is Watching / Listening?</h3>
+                <button class="modal-close-btn" onclick="closeProfileSwitchModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="profile-switch-list" id="profileSwitchList">
+                <!-- Populated dynamically -->
+            </div>
+            <button class="btn btn-secondary" style="width: 100%;" onclick="openAuthModal('signup')">
+                <i class="fa-solid fa-plus"></i> Add New Profile
+            </button>
+        </div>
+    </div>
+
+    
+    <!-- ================= USER ACCOUNT & MEDIA DASHBOARD MODAL ================= -->
+    <div class="user-dashboard-modal" id="userDashboardModal">
+        <div class="modal-backdrop" onclick="closeUserDashboard()"></div>
+        <div class="ud-dialog">
+            <div class="ud-header">
+                <div>
+                    <h3><i class="fa-solid fa-circle-user text-cyan"></i> HIMSTREAMX User Account & Media Dashboard</h3>
+                    <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">Personalized Watchlist, Playlists, Liked Music & Streaming History</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeUserDashboard()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Dashboard Navigation Tabs -->
+            <div class="ud-tabs-nav">
+                <button class="ud-tab-btn active" data-tab="profile" onclick="switchDashboardTab('profile')">
+                    <i class="fa-solid fa-id-card"></i> Overview
+                </button>
+                <button class="ud-tab-btn" data-tab="watchlist" onclick="switchDashboardTab('watchlist')">
+                    <i class="fa-solid fa-bookmark"></i> My Watchlist
+                </button>
+                <button class="ud-tab-btn" data-tab="likedsongs" onclick="switchDashboardTab('likedsongs')">
+                    <i class="fa-solid fa-heart"></i> Liked Songs
+                </button>
+                <button class="ud-tab-btn" data-tab="playlists" onclick="switchDashboardTab('playlists')">
+                    <i class="fa-solid fa-list-music"></i> My Playlists
+                </button>
+                <button class="ud-tab-btn" data-tab="watchhistory" onclick="switchDashboardTab('watchhistory')">
+                    <i class="fa-solid fa-clapperboard"></i> Watch History
+                </button>
+                <button class="ud-tab-btn" data-tab="listeninghistory" onclick="switchDashboardTab('listeninghistory')">
+                    <i class="fa-solid fa-headphones"></i> Listening History
+                </button>
+                <button class="ud-tab-btn" data-tab="reviews" onclick="switchDashboardTab('reviews')">
+                    <i class="fa-solid fa-star"></i> My Reviews
+                </button>
+            </div>
+
+            <!-- Tab Panes Content Body -->
+            <div class="ud-content-body">
+                <!-- Pane 1: Profile Overview -->
+                <div class="ud-pane active" id="udPane-profile">
+                    <div class="ud-overview-grid">
+                        <div class="ud-profile-card">
+                            <div class="ud-avatar-large" id="udProfileAvatar">HP</div>
+                            <h4 id="udProfileName">Himanshu Prajapati</h4>
+                            <p id="udProfileEmail" style="color: var(--text-muted); font-size: 0.85rem;">himanshuprajapati6643@gmail.com</p>
+                            <div style="margin: 10px 0;">
+                                <span class="badge-tag gold" id="udProfileRole">ADMIN</span>
+                            </div>
+                            <p id="udProfilePlan" style="font-size: 0.8rem; color: #56e2ea;">Platform Creator VIP (4K UHD + Hi-Res Audio)</p>
+                        </div>
+                        <div class="ud-stats-grid">
+                            <div class="ud-stat-card">
+                                <i class="fa-solid fa-bookmark" style="color: #56e2ea;"></i>
+                                <h4 id="udStatWatchlist">0</h4>
+                                <span>Saved in Watchlist</span>
+                            </div>
+                            <div class="ud-stat-card">
+                                <i class="fa-solid fa-heart" style="color: #ff3366;"></i>
+                                <h4 id="udStatLikedSongs">0</h4>
+                                <span>Favorite Songs</span>
+                            </div>
+                            <div class="ud-stat-card">
+                                <i class="fa-solid fa-list-music" style="color: #ffb703;"></i>
+                                <h4 id="udStatPlaylists">0</h4>
+                                <span>Created Playlists</span>
+                            </div>
+                            <div class="ud-stat-card">
+                                <i class="fa-solid fa-star" style="color: #a855f7;"></i>
+                                <h4 id="udStatReviews">0</h4>
+                                <span>Community Reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pane 2: Watchlist -->
+                <div class="ud-pane" id="udPane-watchlist">
+                    <div class="movies-grid" id="udWatchlistGrid">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Pane 3: Liked Songs -->
+                <div class="ud-pane" id="udPane-likedsongs">
+                    <div class="song-rows-container" id="udLikedSongsList">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Pane 4: My Playlists -->
+                <div class="ud-pane" id="udPane-playlists">
+                    <div class="ud-playlists-grid" id="udPlaylistsGrid">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Pane 5: Watch History -->
+                <div class="ud-pane" id="udPane-watchhistory">
+                    <div class="ud-history-list" id="udWatchHistoryList">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Pane 6: Listening History -->
+                <div class="ud-pane" id="udPane-listeninghistory">
+                    <div class="song-rows-container" id="udListeningHistoryList">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Pane 7: My Reviews -->
+                <div class="ud-pane" id="udPane-reviews">
+                    <div class="ud-reviews-list" id="udReviewsList">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= ADMIN MANAGEMENT DASHBOARD MODAL ================= -->
+    <div class="admin-modal" id="adminDashboardModal">
+        <div class="modal-backdrop" onclick="closeAdminDashboard()"></div>
+        <div class="admin-dialog">
+            <div class="admin-header">
+                <div>
+                    <h3><i class="fa-solid fa-shield-halved"></i> HIMSTREAMX Admin Management Platform</h3>
+                    <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">Full-Stack Catalog CRUD, User Moderation & Live Analytics</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeAdminDashboard()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Admin Navigation Tabs -->
+            <div class="admin-tab-nav">
+                <button class="admin-tab-btn active" data-tab="metrics" onclick="switchAdminTab('metrics')">
+                    <i class="fa-solid fa-chart-line"></i> Analytics & Live Metrics
+                </button>
+                <button class="admin-tab-btn" data-tab="movies" onclick="switchAdminTab('movies')">
+                    <i class="fa-solid fa-film"></i> Manage Movies
+                </button>
+                <button class="admin-tab-btn" data-tab="songs" onclick="switchAdminTab('songs')">
+                    <i class="fa-solid fa-music"></i> Manage Songs
+                </button>
+                <button class="admin-tab-btn" data-tab="users" onclick="switchAdminTab('users')">
+                    <i class="fa-solid fa-users-gear"></i> Manage Users
+                </button>
+                <button class="admin-tab-btn" data-tab="reviews" onclick="switchAdminTab('reviews')">
+                    <i class="fa-solid fa-comments"></i> Moderate Reviews
+                </button>
+                <button class="admin-tab-btn" data-tab="addnew" onclick="switchAdminTab('addnew')">
+                    <i class="fa-solid fa-plus-circle"></i> Add New Content
+                </button>
+            </div>
+
+            <!-- Tab Panes Content Body -->
+            <div class="ud-content-body" style="padding: 18px 0;">
+                <!-- Pane 1: Metrics & Searches -->
+                <div class="admin-tab-pane active" id="adminPane-metrics">
+                    <div class="admin-metrics-grid">
+                        <div class="admin-metric-card">
+                            <div class="metric-icon"><i class="fa-solid fa-film"></i></div>
+                            <div class="metric-data">
+                                <h4 id="adminMetricMovies">10</h4>
+                                <span>Movies in Catalog</span>
+                            </div>
+                        </div>
+                        <div class="admin-metric-card">
+                            <div class="metric-icon"><i class="fa-solid fa-music"></i></div>
+                            <div class="metric-data">
+                                <h4 id="adminMetricSongs">23</h4>
+                                <span>Songs in Library</span>
+                            </div>
+                        </div>
+                        <div class="admin-metric-card">
+                            <div class="metric-icon"><i class="fa-solid fa-users"></i></div>
+                            <div class="metric-data">
+                                <h4 id="adminMetricUsers">2</h4>
+                                <span>Active Users</span>
+                            </div>
+                        </div>
+                        <div class="admin-metric-card">
+                            <div class="metric-icon"><i class="fa-solid fa-server"></i></div>
+                            <div class="metric-data">
+                                <h4 id="adminMetricBandwidth">98.4 GB/s</h4>
+                                <span>Bandwidth Peak</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-card-panel" style="margin-top: 20px;">
+                        <h4><i class="fa-solid fa-magnifying-glass-chart"></i> Most Searched Queries (Telemetry)</h4>
+                        <div id="adminTopSearchesList" style="margin-top: 12px;">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pane 2: Movies Catalog Management -->
+                <div class="admin-tab-pane" id="adminPane-movies">
+                    <div style="overflow-x: auto;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Movie / Series</th>
+                                    <th>Genres</th>
+                                    <th>IMDb</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminMoviesTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pane 3: Songs Library Management -->
+                <div class="admin-tab-pane" id="adminPane-songs">
+                    <div style="overflow-x: auto;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Track & Artist</th>
+                                    <th>Language</th>
+                                    <th>Genre</th>
+                                    <th>Duration</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminSongsTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pane 4: Users Management -->
+                <div class="admin-tab-pane" id="adminPane-users">
+                    <div style="overflow-x: auto;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>User Name & Email</th>
+                                    <th>Role</th>
+                                    <th>Account Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminUsersTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pane 5: Review Moderation -->
+                <div class="admin-tab-pane" id="adminPane-reviews">
+                    <div style="overflow-x: auto;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Content Title</th>
+                                    <th>Rating</th>
+                                    <th>Review</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminReviewsTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pane 6: Add Content Forms -->
+                <div class="admin-tab-pane" id="adminPane-addnew">
+                    <div class="admin-forms-grid">
+                        <!-- Add New Song Form -->
+                        <div class="admin-card-panel">
+                            <h4><i class="fa-solid fa-plus-circle"></i> Add New Song / Track</h4>
+                            <form id="adminAddSongForm" onsubmit="handleAddNewSong(event)">
+                                <div class="admin-form-group">
+                                    <label>Song Title</label>
+                                    <input type="text" class="admin-input" id="adminSongTitle" placeholder="e.g. Dilbar Acoustic" required>
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Artist Name(s)</label>
+                                    <input type="text" class="admin-input" id="adminSongArtist" placeholder="e.g. Arijit Singh" required>
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Album / Release</label>
+                                    <input type="text" class="admin-input" id="adminSongAlbum" placeholder="e.g. Bollywood Sunset">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Language</label>
+                                    <select class="admin-select" id="adminSongLanguage">
+                                        <option value="Hindi">Hindi</option>
+                                        <option value="Bhojpuri">Bhojpuri</option>
+                                        <option value="Punjabi">Punjabi</option>
+                                        <option value="Haryanvi">Haryanvi</option>
+                                        <option value="Rajasthani">Rajasthani</option>
+                                        <option value="Bengali">Bengali</option>
+                                        <option value="Marathi">Marathi</option>
+                                        <option value="Gujarati">Gujarati</option>
+                                        <option value="South Indian">South Indian</option>
+                                        <option value="English">English</option>
+                                        <option value="Instrumental">Instrumental</option>
+                                    </select>
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Genre / Mood</label>
+                                    <select class="admin-select" id="adminSongGenre">
+                                        <option value="Romantic">Romantic</option>
+                                        <option value="Party">Party</option>
+                                        <option value="DJ/Remix">DJ/Remix</option>
+                                        <option value="Lo-fi">Lo-fi</option>
+                                        <option value="Folk">Folk</option>
+                                        <option value="Devotional">Devotional</option>
+                                        <option value="Workout">Workout</option>
+                                        <option value="Sad">Sad</option>
+                                        <option value="Classical">Classical</option>
+                                        <option value="Instrumental">Instrumental</option>
+                                    </select>
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Duration (mm:ss)</label>
+                                    <input type="text" class="admin-input" id="adminSongDuration" placeholder="3:30">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Cover Art Image URL (Unsplash/Direct)</label>
+                                    <input type="url" class="admin-input" id="adminSongCover" placeholder="https://images.unsplash.com/...">
+                                </div>
+                                <button type="submit" class="admin-btn"><i class="fa-solid fa-cloud-arrow-up"></i> Publish Track</button>
+                            </form>
+                        </div>
+
+                        <!-- Add New Movie Form -->
+                        <div class="admin-card-panel">
+                            <h4><i class="fa-solid fa-clapperboard"></i> Add New Movie / Web Series</h4>
+                            <form id="adminAddMovieForm" onsubmit="handleAddNewMovie(event)">
+                                <div class="admin-form-group">
+                                    <label>Title</label>
+                                    <input type="text" class="admin-input" id="adminMovieTitle" placeholder="e.g. Kalki 2898 AD" required>
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Content Type</label>
+                                    <select class="admin-select" id="adminMovieType">
+                                        <option value="movie">Blockbuster Movie</option>
+                                        <option value="series">Web Series / TV Show</option>
+                                    </select>
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Release Year</label>
+                                    <input type="number" class="admin-input" id="adminMovieYear" value="2026">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>IMDb Rating</label>
+                                    <input type="number" step="0.1" class="admin-input" id="adminMovieRating" value="8.6">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Genres (comma-separated)</label>
+                                    <input type="text" class="admin-input" id="adminMovieGenre" placeholder="Action, Sci-Fi, Hindi">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>YouTube Trailer ID</label>
+                                    <input type="text" class="admin-input" id="adminMovieTrailer" placeholder="e.g. b9EkMc79ZSU">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Poster Image URL</label>
+                                    <input type="url" class="admin-input" id="adminMoviePoster" placeholder="https://images.unsplash.com/...">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label>Synopsis / Description</label>
+                                    <textarea class="admin-input" id="adminMovieDesc" rows="2" placeholder="Brief storyline..."></textarea>
+                                </div>
+                                <button type="submit" class="admin-btn"><i class="fa-solid fa-film"></i> Add Title</button>
+                            </form>
+
+                            <div style="margin-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 14px;">
+                                <button class="btn btn-secondary" style="width: 100%;" onclick="broadcastAnnouncement()">
+                                    <i class="fa-solid fa-bullhorn"></i> Broadcast Global Announcement
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= OFFICIAL YOUTUBE EMBEDDED PLAYER MODAL ================= -->
+    <div class="youtube-player-modal" id="youtubePlayerModal" role="dialog" aria-modal="true">
+        <div class="yt-modal-backdrop" onclick="closeYouTubePlayerModal()"></div>
+        <div class="yt-player-dialog">
+            <div class="yt-player-header">
+                <div>
+                    <h3 id="youtubeModalTitle" style="color: #fff; font-size: 1.1rem; margin: 0; font-weight: 700;">Official YouTube Stream</h3>
+                    <p id="youtubeModalChannel" style="color: var(--text-muted); font-size: 0.8rem; margin: 4px 0 0 0;">Official YouTube Partner Channel</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeYouTubePlayerModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- YouTube IFrame Player Container (Full Video + Audio, Controls, Fullscreen) -->
+            <div class="yt-iframe-aspect-box" id="youtubeIframeContainer">
+                <div id="youtubePlayerTarget"></div>
+            </div>
+
+            <!-- Embed Restriction Warning (Displayed gracefully if publisher restricts embedding) -->
+            <div id="youtubeEmbedErrorNotice" style="display: none;"></div>
+
+            <!-- Actions Bar -->
+            <div class="yt-player-meta-bar">
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-secondary btn-sm" onclick="shareCurrentYouTubeVideo()">
+                        <i class="fa-solid fa-share-nodes"></i> Share Link
+                    </button>
+                    <button class="btn btn-glass btn-sm" onclick="openExternalYouTube(currentYouTubeVideo ? currentYouTubeVideo.videoId : '')">
+                        <i class="fa-brands fa-youtube text-red"></i> Watch on YouTube
+                    </button>
+                </div>
+                <div>
+                    <span class="badge-tag gold"><i class="fa-solid fa-shield-halved"></i> Official YouTube IFrame Player API</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- ================= YOUTUBE API KEY CONFIGURATION MODAL ================= -->
+    <div class="user-dashboard-modal" id="youtubeApiKeyModal" role="dialog" aria-modal="true" style="display: none;">
+        <div class="modal-backdrop" onclick="closeYouTubeKeySetupModal()"></div>
+        <div class="ud-dialog" style="max-width: 580px;">
+            <div class="ud-header" style="background: linear-gradient(135deg, rgba(229, 9, 20, 0.2) 0%, rgba(13, 16, 23, 0.95) 100%);">
+                <div>
+                    <h3 style="color: #fff;"><i class="fa-brands fa-youtube text-red"></i> Configure YouTube Data API v3</h3>
+                    <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">Enable live dynamic searches for any singer, song or movie</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeYouTubeKeySetupModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="padding: 24px;">
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px;">
+                    To enable live dynamic searches for queries like <strong style="color: #fff;">"Raja Raja Raja Kareja Mein"</strong>, <strong style="color: #fff;">"Bhojpuri songs"</strong>, or any singer, configure your official Google Cloud YouTube Data API v3 key below.
+                </p>
+                <div style="margin-bottom: 16px;">
+                    <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px;">Google Cloud YouTube Data API v3 Key</label>
+                    <div style="position: relative;">
+                        <input type="text" id="youtubeApiKeyInput" placeholder="AIzaSy..." style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; font-family: monospace; font-size: 0.95rem;">
+                    </div>
+                    <small style="display: block; color: var(--text-muted); font-size: 0.75rem; margin-top: 6px;">
+                        Saved to <code>backend/.env</code> (<code>YOUTUBE_API_KEY=...</code>) and browser storage.
+                    </small>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button class="btn btn-secondary btn-sm" onclick="closeYouTubeKeySetupModal()">Cancel</button>
+                    <button class="btn btn-primary btn-sm" onclick="saveYouTubeApiKeyFromModal()"><i class="fa-solid fa-check"></i> Save & Enable Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= VIP SUBSCRIPTION & THEATRICAL CINEMA HALL MODAL ================= -->
+    <div class="user-dashboard-modal" id="subscriptionModal" role="dialog" aria-modal="true">
+        <div class="modal-backdrop" onclick="closeSubscriptionModal()"></div>
+        <div class="ud-dialog" style="max-width: 980px;">
+            <div class="ud-header" style="background: linear-gradient(135deg, rgba(255, 183, 3, 0.15) 0%, rgba(13, 16, 23, 0.95) 100%);">
+                <div>
+                    <h3 style="color: #ffb703;"><i class="fa-solid fa-crown text-gold"></i> HIMSTREAMX VIP Cinema Pass & Box Office</h3>
+                    <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">Unlock Big Theatrical Cinema Hall Blockbusters in 4K UHD & Studio Master Audio</p>
+                <div id="theatricalMovieVipNotice" style="display: none; padding: 10px 14px; background: rgba(255, 183, 3, 0.15); border: 1px solid rgba(255, 183, 3, 0.3); border-radius: 8px; color: #ffb703; font-size: 0.88rem; margin-top: 10px;"></div>
+                </div>
+                <button class="modal-close-btn" onclick="closeSubscriptionModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="ud-content-body" style="padding: 24px;">
+                <!-- Theatrical Hall Blockbusters Showcase -->
+                <h4 style="color: #fff; font-size: 1.15rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-film text-red"></i> Theatrical Hall Movies Running in Cinema Theaters
+                </h4>
+                <div class="theatrical-movies-grid" id="subTheatricalMoviesGrid">
+                    <!-- Populated dynamically with Kalki 2898 AD, Jawan, Animal, Stree 2, Pushpa 2, Salaar, KGF 2, RRR -->
+                </div>
+
+                <!-- Subscription Plans Grid -->
+                <h4 style="color: #fff; font-size: 1.15rem; margin: 24px 0 12px 0; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-gem text-cyan"></i> Select Your VIP Subscription Pass
+                </h4>
+                <div class="sub-plans-grid">
+                    <div class="sub-plan-card" onclick="selectSubPlan('VIP 4K Cinema Pass (Monthly)', 199)">
+                        <div>
+                            <span class="badge-tag" style="background: rgba(86, 226, 234, 0.2); color: #56e2ea;">Monthly Pass</span>
+                            <h3 style="color: #fff; font-size: 1.4rem; margin: 8px 0 4px 0;">₹199 <span style="font-size: 0.8rem; color: var(--text-muted);">/ month</span></h3>
+                            <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 12px;">Full HD & 4K Cinema Hall Releases</p>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" style="width: 100%;">Select Plan</button>
+                    </div>
+
+                    <div class="sub-plan-card featured" onclick="selectSubPlan('Director\'s Choice Premium (Quarterly)', 499)">
+                        <div>
+                            <span class="badge-tag gold">Quarterly Special</span>
+                            <h3 style="color: #ffb703; font-size: 1.4rem; margin: 8px 0 4px 0;">₹499 <span style="font-size: 0.8rem; color: var(--text-muted);">/ 3 months</span></h3>
+                            <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 12px;">Theatrical Hall Movies + Regional Music</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width: 100%;">Select Plan</button>
+                    </div>
+
+                    <div class="sub-plan-card" onclick="selectSubPlan('HIMSTREAMX Ultra VIP (Annual)', 999)">
+                        <div>
+                            <span class="badge-tag" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">Best Value (1 Year)</span>
+                            <h3 style="color: #fff; font-size: 1.4rem; margin: 8px 0 4px 0;">₹999 <span style="font-size: 0.8rem; color: var(--text-muted);">/ year</span></h3>
+                            <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 12px;">Complete Catalog & 2026-2027 Premieres</p>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" style="width: 100%;">Select Plan</button>
+                    </div>
+
+                    <div class="sub-plan-card" onclick="selectSubPlan('Lifetime VIP Creator Patron', 1499)">
+                        <div>
+                            <span class="badge-tag" style="background: rgba(229, 9, 20, 0.2); color: #ff3366;">Lifetime Pass</span>
+                            <h3 style="color: #fff; font-size: 1.4rem; margin: 8px 0 4px 0;">₹1,499 <span style="font-size: 0.8rem; color: var(--text-muted);">/ lifetime</span></h3>
+                            <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 12px;">Permanent VIP + Founder Line</p>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" style="width: 100%;">Select Plan</button>
+                    </div>
+                </div>
+
+                <!-- QR Payment Section with qr.png and UPI ID 7084468661@pytes -->
+                <div class="qr-payment-frame">
+                    <div class="qr-img-box">
+                        <img src="qr.png" alt="Payment QR Code for HIMSTREAMX Subscription">
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <h4 style="color: #fff; margin: 0 0 6px 0; font-size: 1.1rem;">
+                            <i class="fa-solid fa-qrcode text-cyan"></i> Scan QR Code with any UPI App
+                        </h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0 0 12px 0;">
+                            Google Pay, PhonePe, Paytm, BHIM, Cred or Bank UPI
+                        </p>
+                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px;">
+                            <span class="upi-copy-pill">
+                                <i class="fa-solid fa-wallet"></i> 7084468661@pytes
+                            </span>
+                            <button class="btn btn-glass btn-sm" onclick="copyUPIId()">
+                                <i class="fa-solid fa-copy"></i> Copy UPI ID
+                            </button>
+                        </div>
+                        <p style="font-size: 0.82rem; color: #a4b3cf; margin: 0;">
+                            <i class="fa-solid fa-phone text-cyan"></i> Payment Support Helpline: <strong>+91 7084468661</strong> (Himanshu Prajapati)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Transaction Reference Form -->
+                <form id="subPaymentForm" onsubmit="handlePaymentSubmit(event)" style="background: rgba(255,255,255,0.03); padding: 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                        <h5 style="color: #fff; margin: 0;">Submit Payment Reference to Activate VIP Pass</h5>
+                        <span style="font-size: 0.85rem; color: #ffb703; font-weight: 700;">Selected: <span id="selectedPlanName">VIP 4K Cinema Pass (Monthly)</span> — <span id="selectedPlanAmount">₹199</span></span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div>
+                            <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 4px;">UPI UTR / 12-Digit Transaction Reference ID</label>
+                            <input type="text" id="paymentUtrInput" class="admin-input" placeholder="e.g. 428172910291" required>
+                        </div>
+                        <div>
+                            <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Your Phone Number (Optional)</label>
+                            <input type="tel" id="paymentMobileInput" class="admin-input" placeholder="+91 7084468661">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 14px; width: 100%;">
+                        <i class="fa-solid fa-circle-check"></i> Verify Transaction & Activate VIP Access
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= DIRECTOR PROFILE SECRET UNLOCK MODAL ================= -->
+    <div class="auth-modal" id="directorUnlockModal" role="dialog" aria-modal="true">
+        <div class="modal-backdrop" onclick="closeDirectorUnlockModal()"></div>
+        <div class="auth-dialog" style="max-width: 440px;">
+            <button class="modal-close-btn" onclick="closeDirectorUnlockModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="auth-header">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 183, 3, 0.15); border: 1px solid #ffb703; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; color: #ffb703; font-size: 1.3rem;">
+                    <i class="fa-solid fa-user-secret"></i>
+                </div>
+                <h3 style="color: #ffb703;">Director Master Security Vault</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Confidential Platform Director Profile & Telemetry. Authorized access only.</p>
+            </div>
+            <form onsubmit="handleDirectorUnlockSubmit(event)" style="margin-top: 16px;">
+                <div class="auth-input-group">
+                    <label>Master Security Password</label>
+                    <input type="password" id="directorSecretKey" class="auth-input" placeholder="••••••••" required autocomplete="off">
+                    <span style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; display: block;">Masked input strictly protected. Known only to Himanshu Prajapati.</span>
+                </div>
+                <button type="submit" class="auth-btn-submit" style="background: linear-gradient(135deg, #ffb703 0%, #e50914 100%); color: #000; font-weight: 800;">
+                    <i class="fa-solid fa-key"></i> Unlock Director Vault
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= DIRECTOR HIMANSHU PRAJAPATI PERSONAL PROFILE MODAL ================= -->
+    <div class="user-dashboard-modal" id="directorProfileModal" role="dialog" aria-modal="true">
+        <div class="modal-backdrop" onclick="closeDirectorProfileModal()"></div>
+        <div class="ud-dialog dir-profile-dialog">
+            <div class="dir-hero-header">
+                <div class="dir-photo-frame">
+                    <img id="dirProfilePhoto" src="Himanshu photo.png" alt="Himanshu Prajapati - Founder & Director">
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <span class="badge-tag gold"><i class="fa-solid fa-crown"></i> Platform Creator & Director</span>
+                    <h2 id="dirProfileName" style="color: #fff; font-size: 1.8rem; margin: 8px 0 4px 0; font-weight: 800;">Himanshu Prajapati</h2>
+                    <h4 id="dirProfileTitle" style="color: #56e2ea; font-size: 0.95rem; font-weight: 600; margin: 0 0 12px 0;">Founder, Platform Architect & Director of HIMSTREAMX</h4>
+                    
+                    <div style="display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.85rem;">
+                        <a href="tel:+917084468661" style="color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-phone text-cyan"></i> <span id="dirProfilePhone">+91 7084468661</span>
+                        </a>
+                        <a href="mailto:himanshuprajapati6643@gmail.com" style="color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-envelope text-red"></i> <span id="dirProfileEmail">himanshuprajapati6643@gmail.com</span>
+                        </a>
+                        <span style="color: #ffb703; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-wallet"></i> UPI: 7084468661@pytes
+                        </span>
+                    </div>
+                </div>
+                <button class="modal-close-btn" onclick="closeDirectorProfileModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="ud-content-body" style="padding: 24px;">
+                <!-- About & Vision -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; margin-bottom: 20px;">
+                    <h4 style="color: #fff; font-size: 1.05rem; margin: 0 0 8px 0;"><i class="fa-solid fa-quote-left text-cyan"></i> Executive Biography & Vision</h4>
+                    <p id="dirProfileBio" style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin: 0 0 12px 0;">
+                        Visionary platform architect and founder of HIMSTREAMX. Passionate about unifying India's rich regional entertainment into a single high-performance 4K streaming and studio-grade audio experience.
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; font-style: italic; margin: 0;">
+                        "Regional art and multilingual music are the heartbeat of Indian culture. My mission with HIMSTREAMX is to build a world-class cinematic streaming standard that bridges regional roots with global cutting-edge technology."
+                    </p>
+                </div>
+
+                <!-- Interactive SVG / HTML Performance Graphs -->
+                <div id="dirProfileGraphs">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <!-- Security Lock Button -->
+                <div style="margin-top: 24px; text-align: right;">
+                    <button class="btn btn-secondary" onclick="closeDirectorProfileModal()">
+                        <i class="fa-solid fa-lock"></i> Lock Vault & Close Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- ================= FLOATING TOAST NOTIFICATION CONTAINER ================= -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#home" class="logo">
+                        <span class="logo-icon"><i class="fa-solid fa-play"></i></span>
+                        <span class="logo-text">HIM<span>STREAMX</span></span>
+                    </a>
+                    <p class="brand-tagline">
+                        Next-generation entertainment hub combining 4K blockbuster movies, web series, and regional music streaming across Bhojpuri, Hindi, Punjabi, Haryanvi, English and more.
+                    </p>
+                    <div class="footer-social-links" aria-label="Contact Himanshu Prajapati">
+                        <a href="mailto:himanshuprajapati6643@gmail.com" aria-label="Email Himanshu Prajapati" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="tel:+917084468661" aria-label="Call Himanshu Prajapati" title="Phone"><i class="fa-solid fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-nav-col">
+                    <h4>Cinema & Series</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#movies">Popular Movies</a></li>
+                        <li><a href="#series">TV Shows & Series</a></li>
+                        <li><a href="#trending">Trending Worldwide</a></li>
+                        <li><a href="#top10">Top 10 India Charts</a></li>
+                        <li><a href="#mylist">My Watchlist</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-nav-col">
+                    <h4>Music Streaming</h4>
+                    <ul>
+                        <li><a href="#music" onclick="filterMusicByCategory('Trending')">Trending Songs</a></li>
+                        <li><a href="#bhojpuri">Bhojpuri Superhits</a></li>
+                        <li><a href="#hindi">Bollywood Melodies</a></li>
+                        <li><a href="#punjabi">Punjabi Pop & Beats</a></li>
+                        <li><a href="#haryanvi">Haryanvi Ragni & DJ</a></li>
+                        <li><a href="#music" onclick="filterMusicByCategory('Lo-fi')">Lo-fi & Chillout</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-nav-col" id="project-details">
+                    <h4>Project Details</h4>
+                    <p class="project-info">
+                        <strong>HIMSTREAMX OTT + Music Platform</strong><br>
+                        Enterprise Web Development Project • 2026<br>
+                        <strong>Developer:</strong> Himanshu Prajapati<br>
+                        <strong>Stack:</strong> HTML5 • CSS3 • JavaScript (ES6+ Modules) • Web Audio API Synth Engine
+                    </p>
+                    <div class="footer-contact" id="contact">
+                        <h4>Contact Himanshu</h4>
+                        <a href="mailto:himanshuprajapati6643@gmail.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span>himanshuprajapati6643@gmail.com</span></a>
+                        <a href="tel:+917084468661"><i class="fa-solid fa-phone" aria-hidden="true"></i><span>+91 7084468661</span></a>
+                        <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Delhi, India</span></p>
+                    </div>
+                    <div class="language-picker">
+                        <i class="fa-solid fa-globe"></i>
+                        <select id="languageSelect" aria-label="Select Language">
+                            <option value="en">English (US)</option>
+                            <option value="hi">हिन्दी (Hindi)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 HIMSTREAMX. Developed by <strong>Himanshu Prajapati</strong>. All rights reserved.</p>
+                <div class="footer-legal-links">
+                    <a href="javascript:void(0)">Privacy Policy</a>
+                    <a href="javascript:void(0)">Terms of Service</a>
+                    <a href="javascript:void(0)">Cookie Preferences</a>
+                    <a href="javascript:void(0)" onclick="openAdminDashboard()">Admin Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MOBILE BOTTOM NAVIGATION DOCK ================= -->
+    <nav class="mobile-bottom-dock">
+        <a href="#home" class="dock-item active" data-dock="home">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="#movies" class="dock-item" data-dock="movies">
+            <i class="fa-solid fa-film"></i>
+            <span>Movies</span>
+        </a>
+        <a href="#series" class="dock-item" data-dock="series">
+            <i class="fa-solid fa-tv"></i>
+            <span>TV Shows</span>
+        </a>
+        <a href="#music" class="dock-item" data-dock="music">
+            <i class="fa-solid fa-music"></i>
+            <span>Music</span>
+        </a>
+        <a href="#mylist" class="dock-item" data-dock="mylist">
+            <i class="fa-solid fa-bookmark"></i>
+            <span>My List</span>
+        </a>
+    </nav>
+
+    <!-- Modular HIMSTREAMX Engine Scripts -->
+    <script src="data/moviesData.js"></script>
+    <script src="data/songsData.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/movies.js"></script>
+    <script src="js/music.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/authAdmin.js"></script>
+    <script src="js/discovery.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="js/youtube.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
